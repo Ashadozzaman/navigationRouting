@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Place } from '../place.model';
+import { PlacesService } from '../places.service';
 
 @Component({
   selector: 'app-discover',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discover.page.scss'],
 })
 export class DiscoverPage implements OnInit {
-
-  constructor() { }
+  loadPlaces: Place[];
+  constructor(private placesServices:PlacesService) { }
 
   ngOnInit() {
+    this.loadPlaces=this.placesServices.places;
   }
 
 }
