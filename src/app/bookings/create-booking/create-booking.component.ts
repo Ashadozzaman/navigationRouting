@@ -15,6 +15,7 @@ export class CreateBookingComponent implements OnInit {
 
   onCancel(){
     this.modalCtrl.dismiss(null,'cancel');
+    
   }
 
   onBookPlace(){

@@ -10,10 +10,12 @@ import { PlacesService } from '../places.service';
 })
 export class DiscoverPage implements OnInit {
   loadPlaces: Place[];
+  ListedloadPlaces: Place[];
   constructor(private placesServices:PlacesService,private menuCtrl:MenuController) { }
 
   ngOnInit() {
     this.loadPlaces=this.placesServices.places;
+    this.ListedloadPlaces=this.loadPlaces.slice(1);
   }
 
   onOpenButton(){
