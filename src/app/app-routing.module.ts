@@ -8,7 +8,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
-  {path:'auth', loadChildren: './auth/auth.module#AuthPageModule'},//alternate routing system
+  //{path:'auth', loadChildren: './auth/auth.module#AuthPageModule'},//alternate routing system
   {
     path: 'places',
     loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule),
