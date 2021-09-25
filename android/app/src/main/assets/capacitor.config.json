@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "navigationRoution",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

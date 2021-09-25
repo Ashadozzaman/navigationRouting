@@ -31,7 +31,7 @@ export class PlacesService {
       'p4',
       'Sajek',
       'Bangladesh Best place in Rangamati',
-      'https://thetourisminternational.com/wp-content/uploads/2019/12/DTHsbihVoAAB0pO-1200x480.jpg',
+      'https://cdn.shopify.com/s/files/1/0022/2537/3254/files/ebadur-rehman-kaium-NBwzhqyT7Jw-unsplash_1024x1024.jpg?v=1599544253',
       159.99
     ),
     new Place(

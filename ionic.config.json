@@ -1,5 +1,7 @@
 {
   "name": "navigationRoution",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
