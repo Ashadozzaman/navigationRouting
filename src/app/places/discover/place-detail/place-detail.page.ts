@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, ModalController, NavController } from '@ionic/angular';
 import { Place } from '../../place.model';
 import { PlacesService } from '../../places.service';
 
@@ -18,7 +18,7 @@ export class PlaceDetailPage implements OnInit {
     private placesServices:PlacesService,
     private navCtrl:NavController,
     private modalCtrl:ModalController,
-    
+    private actionSheet:ActionSheetController
     ) { }
 
   ngOnInit() {
@@ -34,8 +34,36 @@ export class PlaceDetailPage implements OnInit {
     // this.router.navigateByUrl('/places/tabs/discover'); //angular navigation process
     // this.navCtrl.pop(); //nav back
     // this.navCtrl.navigateBack('/places/tabs/discover');
-    this.modalCtrl
-    .create({
+    this.actionSheet.create({
+      header:'Choose an action',
+      buttons:[
+        {
+          text:'Select Button',
+          handler:()=>{
+            this.openBookingModal('select');
+          }
+        },
+        {
+          text:'Random date',
+          handler:()=>{
+            this.openBookingModal('random');
+          }
+        },
+        {
+          text:'Cancel',
+          role:'cancel'
+        },
+      ]
+
+    })
+    .then(actionSheet => {
+      actionSheet.present();
+    })
+  }
+
+  openBookingModal(mode: 'select' | 'random'){
+    console.log(mode);
+    this.modalCtrl.create({
       component:CreateBookingComponent,
       componentProps:{selectedPlace:this.place}
     })
@@ -43,12 +71,13 @@ export class PlaceDetailPage implements OnInit {
       modalEl.present();
       return modalEl.onDidDismiss();
      })
-     .then(resultData => {
-        console.log(resultData.role,resultData.data);
-        if(resultData.role === 'confirm'){
-          console.log("Booked");
-        }
-     });
+    .then(resultData => {
+      console.log(resultData.role,resultData.data);
+      if(resultData.role === 'confirm'){
+        console.log("Booked");
+      }
+    });
+
   }
 
 }
