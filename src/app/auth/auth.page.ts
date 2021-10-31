@@ -42,7 +42,7 @@ export class AuthPage implements OnInit {
     }
     const email    =  form.value.email;
     const password =  form.value.password;
-    console.log(email);
+    console.log(email  );
     if(this.isLogin){
       //send request to login server
     }else{
