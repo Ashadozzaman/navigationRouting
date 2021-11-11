@@ -11,35 +11,45 @@ export class PlacesService {
       'Mahantha Mantion',
       'In the heart new work',
       'https://images.pexels.com/photos/1239162/pexels-photo-1239162.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      144.99
+      144.99,
+      new Date('2020-11-10'),
+      new Date('2021-11-20'),
     ),
     new Place(
       'p2',
       'Parice Mantion',
       'A romantic place in parice',
       'https://static.toiimg.com/photo/38602945/.jpg',
-      244.99
+      244.99,
+      new Date('2020-11-10'),
+      new Date('2021-11-20'),
     ),
     new Place(
       'p3',
       'Cox bazar',
       'Bangladesh Best place',
       'https://youimg1.tripcdn.com/target/100k0z000000npo6pD12B_D_1180_558.jpg',
-      159.99
+      159.99,
+      new Date('2020-11-10'),
+      new Date('2021-11-20'),
     ),
     new Place(
       'p4',
       'Sajek',
       'Bangladesh Best place in Rangamati',
       'https://cdn.shopify.com/s/files/1/0022/2537/3254/files/ebadur-rehman-kaium-NBwzhqyT7Jw-unsplash_1024x1024.jpg?v=1599544253',
-      159.99
+      159.99,
+      new Date('2020-11-10'),
+      new Date('2021-11-20'),
     ),
     new Place(
       'p5',
       'Saint Martin',
       'Bangladesh Best place in Saint Martin',
       'http://bdtourism.website/wp-content/uploads/2019/07/BD-st-martin.jpeg',
-      400.99
+      400.99,
+      new Date('2020-11-10'),
+      new Date('2021-11-20'),
     ),
   ];
   get places(){
