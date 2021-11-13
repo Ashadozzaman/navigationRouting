@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 import { Place } from './place.model';
 
 @Injectable({
@@ -14,6 +15,7 @@ export class PlacesService {
       144.99,
       new Date('2020-11-10'),
       new Date('2021-11-20'),
+      'u1',
     ),
     new Place(
       'p2',
@@ -23,6 +25,7 @@ export class PlacesService {
       244.99,
       new Date('2020-11-10'),
       new Date('2021-11-20'),
+      'u1',
     ),
     new Place(
       'p3',
@@ -32,6 +35,7 @@ export class PlacesService {
       159.99,
       new Date('2020-11-10'),
       new Date('2021-11-20'),
+      'u1',
     ),
     new Place(
       'p4',
@@ -41,6 +45,7 @@ export class PlacesService {
       159.99,
       new Date('2020-11-10'),
       new Date('2021-11-20'),
+      'u1',
     ),
     new Place(
       'p5',
@@ -50,14 +55,28 @@ export class PlacesService {
       400.99,
       new Date('2020-11-10'),
       new Date('2021-11-20'),
+      'u1',
     ),
   ];
   get places(){
     return [...this._places];
   }
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   getPlaces(id:string){
     return{...this._places.find(p=> p.id === id)};
+  }
+  addPlace(title:string,description:string,price:number,availableFrom:Date,availableTo:Date){
+    const newPlace = new Place(
+      Math.random().toString(),
+      title,
+      description,
+      'http://bdtourism.website/wp-content/uploads/2019/07/BD-st-martin.jpeg',
+      price,
+      availableFrom,
+      availableTo,
+      this.authService.userId
+    );
+    this._places.push(newPlace);
   }
 }

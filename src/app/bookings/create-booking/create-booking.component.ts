@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Mode } from '@ionic/core';
 import { Place } from '../../places/place.model';
@@ -11,11 +12,23 @@ import { Place } from '../../places/place.model';
 export class CreateBookingComponent implements OnInit {
   @Input() selectedPlace:Place;
   @Input() selectedMode:'select' | 'random';
+  @ViewChild('f',{static:true}) form:NgForm;
+  startDate : string;
+  endDate : string;
   constructor(private modalCtrl:ModalController) { }
 
   ngOnInit() {
     const availableFrom = new Date(this.selectedPlace.availableFrom);
     const availableTo = new Date(this.selectedPlace.availableTo);
+    if(this.selectedMode === 'random'){
+      this.startDate = new Date( availableFrom.getTime() + Math.random() * (
+        availableTo.getTime() - 7 * 24 * 60 * 60 * 1000 - availableFrom.getTime()
+        )).toISOString();
+      this.endDate = new Date( 
+        new Date(this.startDate).getTime() + Math.random() + (
+          new Date(this.startDate).getTime() + (6 * 24 * 60 * 60 * 1000) - new Date(this.startDate).getTime()
+      )).toISOString();
+    }
   }
 
   onCancel(){
@@ -24,7 +37,23 @@ export class CreateBookingComponent implements OnInit {
   }
 
   onBookPlace(){
-    this.modalCtrl.dismiss({message:'This is dummy message!'},'confirm')
+    if(!this.form.valid || !this.datesValid){
+      return;
+    }
+    this.modalCtrl.dismiss({
+      bookingData:{
+        firstname:this.form.value['first-name'],
+        lastname:this.form.value['last-name'],
+        guestnumber:this.form.value['guest-number'],
+        fromdate:this.form.value['from-date'],
+        todate:this.form.value['to-date'],
+      }
+    },'confirm')
+  }
+  datesValid(){
+    const startdate = new Date(this.form.value['from-date']);
+    const enddate   = new Date(this.form.value['to-date']);
+    return enddate > startdate;
   }
 
 }
